@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeoEdit — Editor Futurista</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>⚡ NeoEdit</h1>
+    <p>Editor Futurista de Fotos e Vídeos</p>
+  </header>
+
+  <main>
+    <section class="upload-section">
+      <label for="fileInput" class="upload-btn">Carregar Ficheiro</label>
+      <input type="file" id="fileInput" accept="image/*,video/*" hidden>
+      <button id="clearBtn">🧹 Limpar</button>
+    </section>
+
+    <section id="editor">
+      <canvas id="canvas"></canvas>
+      <video id="video" controls></video>
+    </section>
+
+    <section class="controls">
+      <button id="downloadBtn">⬇️ Baixar</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Feito por $DEO CORP$ | MADE your IDEA 🚀</p>
+  </footer>
+
+  <!-- Bibliotecas -->
+  <script src="https://cdn.jsdelivr.net/npm/fabric@5.3.0/dist/fabric.min.js"></script>
+  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.1/dist/ffmpeg.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
