@@ -3,46 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="TRN - Future are close. Innovation and technology by DEOcorp">
-  <meta name="keywords" content="TRN, DEOcorp, future, technology, innovation">
-  <meta name="author" content="DEOcorp">
+  <meta name="description" content="TRN - Future are close">
+  <meta name="keywords" content="TRN, future, technology, innovation">
+  <meta name="theme-color" content="#00ffff">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://trn.pt">
+  <link rel="canonical" href="https://meu-site-lrkz.vercel.app">
   
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://trn.pt">
-  <meta property="og:title" content="TRN - DEOcorp">
+  <meta property="og:url" content="https://meu-site-lrkz.vercel.app">
+  <meta property="og:title" content="TRN">
   <meta property="og:description" content="Future are close">
-  <meta property="og:image" content="https://trn.pt/og-image.jpg">
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  
-  <title>TRN - DEOcorp</title>
+  <title>TRN</title>
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Scripts necessários -->
-  <script src="node_modules/fabric/dist/fabric.min.js"></script>
-  <script src="node_modules/@ffmpeg/ffmpeg/dist/ffmpeg.min.js"></script>
-  <script src="node_modules/@ffmpeg/core/dist/ffmpeg-core.js"></script>
-  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.0/dist/ffmpeg.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- CSS customizado -->
   <style>
-    /* Fundo em vídeo */
+    /* Configurações gerais */
     body, html {
       height: 100%;
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Inter', sans-serif;
       color: white;
       overflow-x: hidden;
     }
 
+    /* Fundo em vídeo */
     .video-bg {
       position: fixed;
       top: 0;
@@ -53,59 +54,68 @@
       z-index: -2;
     }
 
-    /* Overlay escuro para destacar texto */
+    /* Overlay */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
       z-index: -1;
     }
 
-    /* Neon nos títulos */
+    /* Efeito neon suave */
     .neon {
       color: #00ffff;
-      text-shadow:
-        0 0 5px #00ffff,
-        0 0 10px #00ffff,
-        0 0 20px #00ffff,
-        0 0 40px #00ffff,
-        0 0 80px #00ffff;
+      text-shadow: 0 0 10px rgba(0,255,255,0.5);
+      transition: text-shadow 0.3s ease;
     }
 
-    /* Cards futuristas */
+    .neon:hover {
+      text-shadow: 0 0 15px rgba(0,255,255,0.8);
+    }
+
+    /* Cards */
     .card-futurista {
-      background: rgba(0, 0, 0, 0.6);
-      border: 2px solid #00ffff;
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(0,255,255,0.3);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
 
     .card-futurista:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px #00ffff;
+      transform: translateY(-5px);
+      border-color: #00ffff;
+      box-shadow: 0 5px 15px rgba(0,255,255,0.2);
     }
 
-    /* Botões neon */
-    .btn-neon {
-      color: #00ffff;
-      border: 2px solid #00ffff;
-      background: transparent;
-      transition: all 0.3s;
+    /* Navegação */
+    .navbar {
+      background: rgba(0,0,0,0.8) !important;
+      backdrop-filter: blur(10px);
     }
 
-    .btn-neon:hover {
-      background: #00ffff;
-      color: black;
-      box-shadow: 0 0 20px #00ffff;
-    }
-
-    /* Conteúdo centralizado */
+    /* Conteúdo principal */
     .header-content {
       position: relative;
       text-align: center;
-      top: 50%;
-      transform: translateY(-50%);
+      padding: 4rem 1rem;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 2rem 1rem;
+      }
+      
+      .card-futurista {
+        margin: 0.5rem;
+      }
+
+      .display-3 {
+        font-size: 2.5rem;
+      }
     }
 
   </style>
@@ -160,19 +170,19 @@
   <!-- Services -->
   <section id="services" class="container my-5">
     <div class="row justify-content-center g-4">
-      <div class="col-md-5">
+      <div class="col-md-4">
         <div class="card card-futurista h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title neon">Innovation</h5>
-            <p class="card-text">Pushing boundaries in technology and design.</p>
+          <div class="card-body text-center p-4">
+            <h5 class="card-title neon mb-3">Innovation</h5>
+            <p class="card-text text-light opacity-75">Technology and design evolution</p>
           </div>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <div class="card card-futurista h-100">
-          <div class="card-body text-center">
-            <h5 class="card-title neon">Future</h5>
-            <p class="card-text">Creating tomorrow's solutions today.</p>
+          <div class="card-body text-center p-4">
+            <h5 class="card-title neon mb-3">Future</h5>
+            <p class="card-text text-light opacity-75">Tomorrow's solutions today</p>
           </div>
         </div>
       </div>
