@@ -17,11 +17,30 @@ fileInput.addEventListener('change', handleFile);
 clearBtn.addEventListener('click', clearEditor);
 downloadBtn.addEventListener('click', downloadFile);
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/gif'];
+const ALLOWED_VIDEO_TYPES = ['video/mp4', 'video/webm'];
+
 function handleFile(e) {
   const file = e.target.files[0];
   if (!file) return;
-  currentFile = file;
+  
+  // Validação de tamanho
+  if (file.size > MAX_FILE_SIZE) {
+    alert('Arquivo muito grande! O tamanho máximo é 10MB.');
+    fileInput.value = '';
+    return;
+  }
+
+  // Validação de tipo
   const type = file.type;
+  if (!ALLOWED_IMAGE_TYPES.includes(type) && !ALLOWED_VIDEO_TYPES.includes(type)) {
+    alert('Tipo de arquivo não suportado! Aceitos: JPG, PNG, GIF, MP4, WEBM');
+    fileInput.value = '';
+    return;
+  }
+
+  currentFile = file;
 
   if (type.startsWith('image/')) {
     videoEl.style.display = 'none';

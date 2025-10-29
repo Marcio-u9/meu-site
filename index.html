@@ -2,40 +2,179 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeoEdit — Editor Futurista</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeoSite Futurista</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  
+  <!-- Scripts necessários -->
+  <script src="node_modules/fabric/dist/fabric.min.js"></script>
+  <script src="node_modules/@ffmpeg/ffmpeg/dist/ffmpeg.min.js"></script>
+  <script src="node_modules/@ffmpeg/core/dist/ffmpeg-core.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- CSS customizado -->
+  <style>
+    /* Fundo em vídeo */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Overlay escuro para destacar texto */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    /* Neon nos títulos */
+    .neon {
+      color: #00ffff;
+      text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff,
+        0 0 80px #00ffff;
+    }
+
+    /* Cards futuristas */
+    .card-futurista {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00ffff;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card-futurista:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    /* Botões neon */
+    .btn-neon {
+      color: #00ffff;
+      border: 2px solid #00ffff;
+      background: transparent;
+      transition: all 0.3s;
+    }
+
+    .btn-neon:hover {
+      background: #00ffff;
+      color: black;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    /* Conteúdo centralizado */
+    .header-content {
+      position: relative;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+  </style>
 </head>
 <body>
-  <header>
-    <h1>⚡ NeoEdit</h1>
-    <p>Editor Futurista de Fotos e Vídeos</p>
+
+  <!-- Vídeo de fundo -->
+ <div class="video-bg" style="background: url('fundo.gif') center center / cover no-repeat;"></div>
+
+
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary" role="navigation" aria-label="navegação principal">
+    <div class="container">
+      <a class="navbar-brand neon" href="#" aria-label="Início">NeoSite</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#editor">Editor</a>
+          </li>
+        </ul>
+      </div>
+      <a class="navbar-brand neon" href="#">NeoSite</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Fotos</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Vídeos</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header com neon -->
+  <header class="header-content text-center">
+    <h1 class="display-3 neon">Bem-vindo ao Futuro</h1>
+    <p class="lead text-white-50">Site moderno, rápido e futurista para impressionar na apresentação</p>
+    <a href="#cards" class="btn btn-neon btn-lg mt-3">Explorar</a>
   </header>
 
-  <main>
-    <section class="upload-section">
-      <label for="fileInput" class="upload-btn">Carregar Ficheiro</label>
-      <input type="file" id="fileInput" accept="image/*,video/*" hidden>
-      <button id="clearBtn">🧹 Limpar</button>
-    </section>
+  <!-- Cards -->
+  <section id="cards" class="container my-5">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card card-futurista h-100">
+          <div class="card-body">
+            <h5 class="card-title neon">Fotos</h5>
+            <p class="card-text">Organize e edite fotos de forma rápida e estilosa.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-futurista h-100">
+          <div class="card-body">
+            <h5 class="card-title neon">Vídeos</h5>
+            <p class="card-text">Edite e visualize vídeos sem complicações.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-futurista h-100">
+          <div class="card-body">
+            <h5 class="card-title neon">Futuro</h5>
+            <p class="card-text">Design moderno e futurista para impressionar na apresentação.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="editor">
-      <canvas id="canvas"></canvas>
-      <video id="video" controls></video>
-    </section>
-
-    <section class="controls">
-      <button id="downloadBtn">⬇️ Baixar</button>
-    </section>
-  </main>
-
-  <footer>
-    <p>Feito por $DEO CORP$ | MADE your IDEA 🚀</p>
+  <!-- Footer -->
+  <footer class="text-center py-3 border-top border-secondary">
+    <small>© 2025 NeoSite. Todos os direitos reservados.</small>
   </footer>
 
-  <!-- Bibliotecas -->
-  <script src="https://cdn.jsdelivr.net/npm/fabric@5.3.0/dist/fabric.min.js"></script>
-  <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.1/dist/ffmpeg.min.js"></script>
-  <script src="script.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
